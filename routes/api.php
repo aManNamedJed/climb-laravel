@@ -38,7 +38,6 @@ Route::get('/climbs/{id}/label', function (Request $request, $id) {
     $climb->createQRCode();
 });
 
-
 /**
  * Create a new climb
  * 

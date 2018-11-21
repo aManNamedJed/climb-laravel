@@ -20,11 +20,20 @@ class Climb extends Model
 
     public function createLabel()
     {
-        $html2pdf = new Html2Pdf();
+        // Create the QR Code and store it in public folder
         $this->storeQRCode();
-        $qr_url = asset("storage/climbs/$this->id/QR.png");
-        $html2pdf->writeHTML("<h1>New Climb: $this->name</h1><img src='$qr_url' width='300' height='300' />");
+        
+        // Create the PDF content from template
+        $html2pdf = new Html2Pdf();
+
+        ob_start();
+        include( resource_path('views/pdf/pdf-template.php') );
+        $pdf = ob_get_clean();
+
+        $html2pdf->writeHTML($pdf);
         $pdfContent = $html2pdf->output("Label.pdf", 'S');
+
+        // Store the new PDF
         Storage::put("public/climbs/$this->id/Label.pdf", $pdfContent);
     }
 
@@ -34,5 +43,10 @@ class Climb extends Model
         $qrCode->setSize(300);
         $qrCode->setWriterByName('png');
         Storage::put("public/climbs/$this->id/QR.png", $qrCode->writeString());        
+    }
+
+    public function getQRCodeURL()
+    {
+        return asset("storage/climbs/$this->id/QR.png");
     }
 }
