@@ -47,6 +47,7 @@ Route::get('/climbs/{id}/label', function (Request $request, $id) {
 Route::post('/climbs', function (Request $request) {
     $climb =  App\Climb::create($request->all());
     $climb->createLabel();
+    return $climb;
 });
 
 /**
