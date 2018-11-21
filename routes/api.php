@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -32,12 +31,22 @@ Route::get('/climbs/{id}', function (Request $request, $id) {
 });
 
 /**
+ * Get a climb by its ID
+ */
+Route::get('/climbs/{id}/label', function (Request $request, $id) {
+    $climb = App\Climb::findOrFail($id);
+    $climb->createQRCode();
+});
+
+
+/**
  * Create a new climb
  * 
  * Returns the new climb as JSON
  */
 Route::post('/climbs', function (Request $request) {
-    return App\Climb::create($request->all());
+    $climb =  App\Climb::create($request->all());
+    $climb->createLabel();
 });
 
 /**
