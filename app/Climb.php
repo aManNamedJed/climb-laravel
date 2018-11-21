@@ -12,6 +12,6 @@ class Climb extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'color', 'grade',
+        'name', 'color', 'grade', 'setter_id'
     ];
 }
