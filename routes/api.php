@@ -36,7 +36,7 @@ Route::get('/climbs/{id}', function (Request $request, $id) {
  * 
  * Returns the new climb as JSON
  */
-Route::post('/climbs', function (Request $request, $id) {
+Route::post('/climbs', function (Request $request) {
     return App\Climb::create($request->all());
 });
 
