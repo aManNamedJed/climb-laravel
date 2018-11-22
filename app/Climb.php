@@ -27,7 +27,7 @@ class Climb extends Model
         $html2pdf = new Html2Pdf();
 
         ob_start();
-        include( resource_path('views/pdf/pdf-template.php') );
+        include( resource_path('views/pdf/label.blade.php') );
         $pdf = ob_get_clean();
 
         $html2pdf->writeHTML($pdf);
