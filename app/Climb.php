@@ -25,11 +25,9 @@ class Climb extends Model
         
         // Create the PDF content from template
         $html2pdf = new Html2Pdf();
-
         ob_start();
         include( resource_path('views/pdf/label.blade.php') );
         $pdf = ob_get_clean();
-
         $html2pdf->writeHTML($pdf);
         $pdfContent = $html2pdf->output("Label.pdf", 'S');
 

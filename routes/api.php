@@ -31,14 +31,6 @@ Route::get('/climbs/{id}', function (Request $request, $id) {
 });
 
 /**
- * Get a climb by its ID
- */
-Route::get('/climbs/{id}/label', function (Request $request, $id) {
-    $climb = App\Climb::findOrFail($id);
-    $climb->createQRCode();
-});
-
-/**
  * Create a new climb
  * 
  * Returns the new climb as JSON
@@ -58,5 +50,22 @@ Route::post('/climbs/{id}', function (Request $request, $id) {
     $climb =  App\Climb::findOrFail($id);
     $climb->fill($request->all())->save();
     return $climb;
+});
+
+/**
+ * Get a list of all attempts
+ */
+Route::get('/attempts', function (Request $request) {
+    return App\Attempt::all();
+});
+
+/**
+ * Create a new attempt
+ * 
+ * Returns the new attempt as JSON
+ */
+Route::post('/attempts', function (Request $request) {
+    $attempt =  App\Attempt::create($request->all());
+    return $attempt;
 });
 

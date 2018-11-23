@@ -15,6 +15,8 @@ class CreateAttemptsTable extends Migration
     {
         Schema::create('attempts', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('climb_id');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
