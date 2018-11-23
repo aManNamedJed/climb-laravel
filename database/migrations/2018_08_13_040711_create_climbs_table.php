@@ -16,6 +16,7 @@ class CreateClimbsTable extends Migration
         Schema::create('climbs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('description');
             $table->string('color');
             $table->string('grade');
             $table->integer('setter_id');

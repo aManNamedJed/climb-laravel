@@ -15,7 +15,7 @@ class Climb extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'color', 'grade', 'setter_id'
+        'name', 'description', 'color', 'grade', 'setter_id'
     ];
 
     public function createLabel()
