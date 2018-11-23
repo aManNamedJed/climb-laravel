@@ -11,6 +11,8 @@ class ClimbsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Climb::class, 50)->create();
+        factory(App\Climb::class, 50)->create()->each(function ($climb) {
+            $climb->createLabel();
+        });
     }
 }
