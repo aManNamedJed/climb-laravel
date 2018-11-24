@@ -13,20 +13,20 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user()->with('attempts')->get();
+    return $request->user()->with('attempts')->first();
 });
 
 /**
  * Get a list of all climbs
  */
-Route::get('/climbs', function (Request $request) {
+Route::middleware('auth:api')->get('/climbs', function (Request $request) {
     return App\Climb::all();
 });
 
 /**
  * Get a climb by its ID
  */
-Route::get('/climbs/{id}', function (Request $request, $id) {
+Route::middleware('auth:api')->get('/climbs/{id}', function (Request $request, $id) {
     return App\Climb::where('id', $id)->with('attempts')->get();
 });
 
@@ -35,7 +35,7 @@ Route::get('/climbs/{id}', function (Request $request, $id) {
  * 
  * Returns the new climb as JSON
  */
-Route::post('/climbs', function (Request $request) {
+Route::middleware('auth:api')->post('/climbs', function (Request $request) {
     $climb =  App\Climb::create($request->all());
     $climb->createLabel();
     return $climb;
@@ -46,7 +46,7 @@ Route::post('/climbs', function (Request $request) {
  * 
  * Returns the updated climb as JSON
  */
-Route::post('/climbs/{id}', function (Request $request, $id) {
+Route::middleware('auth:api')->post('/climbs/{id}', function (Request $request, $id) {
     $climb =  App\Climb::findOrFail($id);
     $climb->fill($request->all())->save();
     return $climb;
@@ -55,7 +55,7 @@ Route::post('/climbs/{id}', function (Request $request, $id) {
 /**
  * Get a list of all attempts
  */
-Route::get('/attempts', function (Request $request) {
+Route::middleware('auth:api')->get('/attempts', function (Request $request) {
     return App\Attempt::all();
 });
 
@@ -64,7 +64,7 @@ Route::get('/attempts', function (Request $request) {
  * 
  * Returns the new attempt as JSON
  */
-Route::post('/attempts', function (Request $request) {
+Route::middleware('auth:api')->post('/attempts', function (Request $request) {
     $attempt =  App\Attempt::create($request->all());
     return $attempt;
 });
