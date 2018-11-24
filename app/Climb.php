@@ -18,6 +18,14 @@ class Climb extends Model
         'name', 'description', 'color', 'grade', 'setter_id'
     ];
 
+    /**
+     * Get the attempts for the climb.
+     */
+    public function attempts()
+    {
+        return $this->hasMany('App\Attempt');
+    }
+
     public function createLabel()
     {
         // Create the QR Code and store it in public folder

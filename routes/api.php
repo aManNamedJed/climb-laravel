@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    return $request->user()->with('attempts')->get();
 });
 
 /**
@@ -27,7 +27,7 @@ Route::get('/climbs', function (Request $request) {
  * Get a climb by its ID
  */
 Route::get('/climbs/{id}', function (Request $request, $id) {
-    return App\Climb::findOrFail($id);
+    return App\Climb::where('id', $id)->with('attempts')->get();
 });
 
 /**

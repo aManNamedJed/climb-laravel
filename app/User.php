@@ -20,6 +20,14 @@ class User extends Authenticatable
     ];
 
     /**
+     * Get the attempts for the user.
+     */
+    public function attempts()
+    {
+        return $this->hasMany('App\Attempt');
+    }
+
+    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
