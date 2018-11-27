@@ -12,7 +12,7 @@ class Attempt extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'climb_id',
+        'user_id', 'climb_id', 'is_successful', 'has_falls'
     ];
 
     public function climb()
