@@ -17,7 +17,7 @@ class CreateAttemptsTable extends Migration
             $table->increments('id');
             $table->integer('climb_id');
             $table->integer('user_id');
-            $table->string('was_successful');
+            $table->string('is_successful');
             $table->string('has_falls');
             $table->timestamps();
         });
