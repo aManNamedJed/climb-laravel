@@ -66,6 +66,8 @@ Route::middleware('auth:api')->get('/attempts', function (Request $request) {
  */
 Route::middleware('auth:api')->post('/attempts', function (Request $request) {
     $attempt =  App\Attempt::create($request->all());
-    return $attempt;
+    $climb_id = $request->input('climb_id');
+    $climb =  App\Climb::where('id', $climb_id)->with('attempts.user')->first();
+    return $climb;
 });
 
