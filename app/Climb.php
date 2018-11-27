@@ -45,7 +45,7 @@ class Climb extends Model
 
     public function storeQRCode()
     {
-        $qrCode = new QrCode( url("/api/climbs/$this->id") );
+        $qrCode = new QrCode( $this->id );
         $qrCode->setSize(300);
         $qrCode->setWriterByName('png');
         Storage::put("public/climbs/$this->id/QR.png", $qrCode->writeString());        
