@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user()->with('attempts')->first();
+    return $request->user()->with('attempts.climb')->first();
 });
 
 /**
