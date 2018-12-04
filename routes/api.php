@@ -13,8 +13,8 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user()->with(['attempts.climb' => function($query) {
-        $query->orderBy('created_at', 'desc');
+    return $request->user()->with(['attempts' => function($query) {
+        $query->with('climb')->orderBy('created_at', 'desc');
     }])->first();
 });
 
