@@ -29,7 +29,9 @@ Route::middleware('auth:api')->get('/climbs', function (Request $request) {
  * Get a climb by its ID
  */
 Route::middleware('auth:api')->get('/climbs/{id}', function (Request $request, $id) {
-    return App\Climb::where('id', $id)->with('attempts.user')->first();
+    return App\Climb::where('id', $id)->with(['attempts' => function($query) {
+        $query->with('climb')->orderBy('created_at', 'desc');
+    }])->first();
 });
 
 /**
