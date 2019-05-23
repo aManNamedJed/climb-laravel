@@ -30,7 +30,7 @@ Route::middleware('auth:api')->get('/climbs', function (Request $request) {
  */
 Route::middleware('auth:api')->get('/climbs/{id}', function (Request $request, $id) {
     return App\Climb::where('id', $id)->with(['attempts' => function($query) {
-        $query->with('climb')->orderBy('created_at', 'desc');
+        $query->with('climb')->with('user')->orderBy('created_at', 'desc');
     }])->first();
 });
 
