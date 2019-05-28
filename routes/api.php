@@ -22,7 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
  * Get a list of all climbs
  */
 Route::middleware('auth:api')->get('/climbs', function (Request $request) {
-    return App\Climb::all();
+    return App\Climb::orderBy('created_at', 'desc')->paginate(10);
 });
 
 /**
