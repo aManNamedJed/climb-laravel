@@ -19,6 +19,7 @@ class CreateClimbsTable extends Migration
             $table->text('description');
             $table->string('color');
             $table->string('grade');
+            $table->integer('rating');
             $table->integer('setter_id');
             $table->timestamps();
         });
