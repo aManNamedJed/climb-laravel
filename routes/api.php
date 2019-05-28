@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user()->with(['attempts' => function($query) {
+    return \App\User::where('id', '=', $request->user()->id )->with(['attempts' => function($query) {
         $query->with('climb')->orderBy('created_at', 'desc');
     }])->first();
 });
@@ -66,7 +66,7 @@ Route::middleware('auth:api')->get('/attempts', function (Request $request) {
 /**
  * Create a new attempt
  * 
- * Returns the new attempt as JSON
+ * @return string Returns the new attempt as JSON string
  */
 Route::middleware('auth:api')->post('/attempts', function (Request $request) {
     $attempt =  App\Attempt::create($request->all());

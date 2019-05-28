@@ -28,6 +28,19 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the climbs set by a user
+     */
+    public function settings()
+    {
+        return $this->hasMany('App\Climb', 'setter_id');
+    }
+
+    public function companies()
+    {
+        return $this->belongsToMany('App\Company', 'users_companies');
+    }
+
+    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
